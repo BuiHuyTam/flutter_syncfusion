@@ -43,7 +43,7 @@ class HourlyWeatherChart extends StatelessWidget {
                 xValueMapper: (Daily daily, _) => DateFormat('MMMMd').format(
                     DateTime.fromMillisecondsSinceEpoch(daily.dt! * 1000)),
                 yValueMapper: (Daily daily, _) => daily.temp?.min,
-                name: 'Min Temp',
+                name: 'Min Temperature',
               ),
               // Spline series for maximum temperature
               SplineSeries<Daily, String>(
@@ -52,7 +52,7 @@ class HourlyWeatherChart extends StatelessWidget {
                 xValueMapper: (Daily daily, _) => DateFormat('MMMMd').format(
                     DateTime.fromMillisecondsSinceEpoch(daily.dt! * 1000)),
                 yValueMapper: (Daily daily, _) => daily.temp?.max,
-                name: 'Max Temp',
+                name: 'Max Temperature',
               )
             ],
             crosshairBehavior: CrosshairBehavior(
