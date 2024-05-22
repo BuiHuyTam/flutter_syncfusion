@@ -11,18 +11,22 @@ class WeatherDataHourly {
 class Hourly {
   int? dt;
   int? temp;
-
+  double? uvi;
   List<Weather>? weather;
 
   Hourly({
     this.dt,
     this.temp,
+    this.uvi,
     this.weather,
   });
 
   factory Hourly.fromJson(Map<String, dynamic> json) => Hourly(
         dt: json['dt'] as int?,
         temp: (json['temp'] as num?)?.round(),
+        uvi: json['uvi'] is int
+            ? (json['uvi'] as int).toDouble()
+            : json['uvi'] as double?,
         weather: (json['weather'] as List<dynamic>?)
             ?.map((e) => Weather.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -31,6 +35,7 @@ class Hourly {
   Map<String, dynamic> toJson() => {
         'dt': dt,
         'temp': temp,
+        'uvi': uvi,
         'weather': weather?.map((e) => e.toJson()).toList(),
       };
 }

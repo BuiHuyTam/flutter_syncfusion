@@ -5,18 +5,26 @@ import 'package:flutter_syncfusion/app/data/model/weather_data.dart';
 import 'package:flutter_syncfusion/app/data/provider/api_provider.dart';
 import 'package:geolocator/geolocator.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   late TrackballBehavior trackballBehavior;
   final RxBool _loading = true.obs;
   final RxDouble latitude = 0.0.obs;
   final RxDouble longtitude = 0.0.obs;
   final RxInt currentIndex = 0.obs;
-
+  late TabController tabController;
   RxBool loading() => _loading;
   RxDouble getLattitude() => latitude;
   RxDouble getLongtitude() => longtitude;
-  TabController? tabController;
   final weatherData = WeatherData().obs;
+
+  final List<Tab> myTabs = <Tab>[
+    const Tab(text: "Daily"),
+    const Tab(
+      text: "Monthly",
+    )
+  ];
+
   WeatherData getWeatherData() {
     return weatherData.value;
   }
@@ -28,6 +36,13 @@ class HomeController extends GetxController {
       determineLocation();
     }
     super.onInit();
+    tabController = TabController(length: myTabs.length, vsync: this);
+  }
+
+  @override
+  void onClose() {
+    tabController.dispose();
+    super.onClose();
   }
 
   determineLocation() async {
