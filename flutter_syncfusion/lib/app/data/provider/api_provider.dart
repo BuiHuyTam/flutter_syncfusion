@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_syncfusion/app/data/model/weather_data.dart';
 import 'package:flutter_syncfusion/app/data/model/weather_data_current.dart';
+import 'package:flutter_syncfusion/app/data/model/weather_data_daily.dart';
 import 'package:flutter_syncfusion/app/data/model/weather_data_hourly.dart';
 import 'package:flutter_syncfusion/core/utils/helpers/keys.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +24,8 @@ class FetchWeather {
           WeatherDataCurrent.fromJson(
               jsonDecode(response.body) as Map<String, dynamic>),
           WeatherDataHourly.fromJson(
+              jsonDecode(response.body) as Map<String, dynamic>),
+          WeatherDataDaily.fromJson(
               jsonDecode(response.body) as Map<String, dynamic>));
       return weatherData!;
     } else {

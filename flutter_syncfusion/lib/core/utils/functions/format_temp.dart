@@ -1,5 +1,5 @@
 class FormatTemp {
-  final int temp;
+  final double temp;
   FormatTemp({required this.temp});
   int formatted() {
     int formattedTemp = (temp / 10).truncate();

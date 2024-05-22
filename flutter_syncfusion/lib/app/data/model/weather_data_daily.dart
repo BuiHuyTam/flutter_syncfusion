@@ -9,7 +9,7 @@ class WeatherDataDaily {
 
 class Daily {
   int? dt;
-  int? temp;
+  Temp? temp;
 
   List<Weather>? weather;
 
@@ -21,7 +21,9 @@ class Daily {
 
   factory Daily.fromJson(Map<String, dynamic> json) => Daily(
         dt: json['dt'] as int?,
-        temp: (json['temp'] as num?)?.round(),
+        temp: json['temp'] == null
+            ? null
+            : Temp.fromJson(json['temp'] as Map<String, dynamic>),
         weather: (json['weather'] as List<dynamic>?)
             ?.map((e) => Weather.fromJson(e as Map<String, dynamic>))
             .toList(),

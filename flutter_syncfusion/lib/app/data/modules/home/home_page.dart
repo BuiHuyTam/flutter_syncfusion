@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_syncfusion/app/data/modules/home/controller.dart';
-import 'package:flutter_syncfusion/app/global_widgets/hourly_weather_chart.dart';
+import 'package:flutter_syncfusion/app/global_widgets/daily_weather_chart.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,9 +16,12 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : Scaffold(
+                appBar: AppBar(
+                  title: Center(child: Text("Weather Charts")),
+                ),
                 body: HourlyWeatherChart(
-                    weatherDataHourly:
-                        controller.getWeatherData().getHourlyWeather()),
+                    weatherDataDaily:
+                        controller.getWeatherData().getDailyWeather()),
               )));
   }
 }

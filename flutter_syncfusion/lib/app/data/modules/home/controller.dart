@@ -4,7 +4,6 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter_syncfusion/app/data/model/weather_data.dart';
 import 'package:flutter_syncfusion/app/data/provider/api_provider.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
 
 class HomeController extends GetxController {
   late TrackballBehavior trackballBehavior;
@@ -16,7 +15,7 @@ class HomeController extends GetxController {
   RxBool loading() => _loading;
   RxDouble getLattitude() => latitude;
   RxDouble getLongtitude() => longtitude;
-
+  TabController? tabController;
   final weatherData = WeatherData().obs;
   WeatherData getWeatherData() {
     return weatherData.value;
