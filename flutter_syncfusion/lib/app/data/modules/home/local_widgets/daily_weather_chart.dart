@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_syncfusion/app/data/model/weather_data_daily.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
-
+import '';
 class DailyWeatherChart extends StatelessWidget {
   DailyWeatherChart({super.key, required this.weatherDataDaily});
   final WeatherDataDaily weatherDataDaily;
@@ -49,7 +49,7 @@ class DailyWeatherChart extends StatelessWidget {
               .format(DateTime.fromMillisecondsSinceEpoch(daily.dt! * 1000)),
           yValueMapper: (Daily daily, _) => daily.temp?.max,
           name: 'Max Temperature',
-        )
+        ),
       ],
       crosshairBehavior: CrosshairBehavior(
           enable: true,
